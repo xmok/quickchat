@@ -42,6 +42,6 @@ export default function ChatBoxChannelHeader() {
   async function addOrRemoveAgent() {
     if (!channel) return;
     const endpoint = aiInChannel ? 'stop-ai-agent' : 'start-ai-agent';
-    await axios.post(`${import.meta.env.VITE_SERVER_URL}/${endpoint}`, { channel_id: channel.id });
+    await axios.post(`${import.meta.env.VITE_API_URL}/${endpoint}`, { channel_id: channel.id });
   }
 }

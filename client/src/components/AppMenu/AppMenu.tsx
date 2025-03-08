@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 import type { AppMenuProps } from "stream-chat-react";
 
 import "./AppMenu.css";

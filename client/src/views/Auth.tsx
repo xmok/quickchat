@@ -17,13 +17,13 @@ const Auth = ({ onAuth }: AuthProps) => {
     const endpoint = isLogin ? '/auth/login' : '/auth/register';
     
     try {
-      console.log('Sending request to:', `${import.meta.env.VITE_SERVER_URL}${endpoint}`);
+      console.log('Sending request to:', `${import.meta.env.VITE_API_URL}${endpoint}`);
       console.log('Request payload:', {
         id: username,
         ...(isLogin ? {} : { name: displayName || username })
       });
 
-      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}${endpoint}`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}${endpoint}`, {
         id: username,
         ...(isLogin ? {} : { name: displayName || username })
       });
