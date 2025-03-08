@@ -4,12 +4,21 @@
 
 # QuickChat
 
+client:
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fb2a0376-242e-4bab-a025-4424ee37d186/deploy-status)](https://app.netlify.com/sites/quickchat-xmok/deploys)
+
+server: Deployed on Coolify
+
+
 A fun little project that uses [Stream](https://getstream.io/) to present a simple quick chat application.
 
 ## 🍯 Features
 
 - Only a username is required to chat
     - **DRAWBACK**: anyone with the username can access the information but sufficient for an exercise
+- Chat w/ emojis, media
+- Chat with Anthropic AI Agent in lieu of characters
+- Characters are a WIP and will be implemented eventually
 
 ## ⚒️ Process
 
@@ -30,3 +39,5 @@ Stream
 1. Couldn't figure out why the client kept on disconnecting after logging in. This caused the largest bottleneck throughout the exercise. The cause was `<ChatView.Channels>` not rendering properly which resulted in the client auto disconnecting. This was not evident as no errors were thrown. Troubleshooting had to be old-school. I traced the component lifecycles until I finally pinpointed when the disconnect fired.
 
 2. Python interpreter suddenly stopped being picked up by VSCode. This resulted installed modules not being identified errors. Manually changing the interpreter in VSCode did not work either for reasons unbeknownst. Eventually, had to hardcode a virtual environment so it would be picked up.
+
+3. I was able to add AI characters w/ personalities but streaming them from Python to the SDK ended up taking much longer. That was the 3rd and final blocker.
