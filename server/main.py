@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from stream_chat import StreamChat, StreamChatAsync
 import os
-from typing import Optional
+import json
+from typing import Optional, List
 from dotenv import load_dotenv
 from models import UserAuth, StartAgentRequest, StopAgentRequest, NewMessageRequest
 from helpers import clean_channel_id, create_bot_id
@@ -16,10 +17,14 @@ STREAM_API_KEY = os.getenv("STREAM_API_KEY", "")
 STREAM_API_SECRET = os.getenv("STREAM_API_SECRET", "")
 CHAT_APP_URL = os.getenv("CHAT_APP_URL", "")
 
-# Add CORS middleware
+# Add CORS middleware with proper origin handling
+origins = [CHAT_APP_URL]
+if CHAT_APP_URL and "," in CHAT_APP_URL:
+    origins = [origin.strip() for origin in CHAT_APP_URL.split(",")]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[CHAT_APP_URL],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -132,7 +137,7 @@ async def stop_ai_agent(request: StopAgentRequest):
     This endpoint stops an AI agent for a given channel.
     It removes the agent from the agents dictionary and closes the server client.
     """
-    server_client = StreamChatAsync(api_key, api_secret)
+    server_client = StreamChatAsync(api_key=STREAM_API_KEY, api_secret=STREAM_API_SECRET)
 
     bot_id = create_bot_id(request.channel_id)
 

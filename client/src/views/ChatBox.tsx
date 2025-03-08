@@ -33,26 +33,50 @@ const ChatBox = (props: ChatBoxProps) => {
 
   const ChatBoxChannelHeader = () => {
     const { channel } = useChannelStateContext();
-    const { members } = useMembers({ channel });
-    
-    const aiInChannel =
-      (members ?? []).filter((member) => member.includes('ai-bot')).length > 0;
-    return (
-      <div className='my-channel-header'>
-        <h2>{channel?.data?.name ?? 'Chat with an AI'}</h2>
+    const [aiInChannel, setAiInChannel] = useState(false);
 
-        <button onClick={addOrRemoveAgent}>
-          {aiInChannel ? 'Remove AI' : 'Add AI'}
-        </button>
-      </div>
-    );
+    useEffect(() => {
+      channel?.queryMembers({}).then((members) => {
+        const isAiInChannel =
+          members.members.filter((member) => member.user_id?.includes('ai-bot'))
+            .length > 0;
+        setAiInChannel(isAiInChannel);
+      });
+  
+      const relevantEvents = ['member.added', 'member.removed'];
+      channel?.on((event) => {
+        if (relevantEvents.includes(event.type)) {
+          channel?.queryMembers({}).then((members) => {
+            const isAiInChannel =
+              members.members.filter((member) =>
+                member.user_id?.includes('ai-bot')
+              ).length > 0;
+            setAiInChannel(isAiInChannel);
+          });
+        }
+      });
+    }, [channel]);
 
-    async function addOrRemoveAgent() {
-      if (!channel.id) return;
-      if (aiInChannel) await aiService.stopAIAgent(channel.id);
-      else await aiService.startAIAgent(channel.id);
+  return (
+    <div className='my-channel-header'>
+      <h2>{channel?.data?.name ?? 'Chat with an AI'}</h2>
+
+      <button onClick={addOrRemoveAgent}>
+        {aiInChannel ? 'Remove AI' : 'Add AI'}
+      </button>
+    </div>
+  );
+
+  async function addOrRemoveAgent() {
+    if (!channel) return;
+    if (aiInChannel) {
+      await aiService.stopAIAgent(channel.id)
+    } else {
+      await aiService.startAIAgent(channel.id);
     }
   }
+
+    }
 
   const channelListOptions = {
     filters: { type: 'messaging', members: { $in: [user.id] } },
