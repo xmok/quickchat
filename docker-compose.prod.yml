@@ -6,7 +6,7 @@ services:
       context: ./client
       dockerfile: Dockerfile.prod
     ports:
-      - "80:80"  # Production port for the client
+      - "4023:80"  # Map container port 80 to host port 3000
     environment:
       - VITE_API_URL=${API_URL:-https://api.example.com}
     depends_on:
