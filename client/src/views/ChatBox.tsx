@@ -1,5 +1,6 @@
 import { Channel, ChannelHeader, ChannelList, Chat, LoadingIndicator, MessageInput, MessageList, Thread, useCreateChatClient, Window } from 'stream-chat-react';
 import 'stream-chat-react/dist/css/v2/index.css';
+import '../styles/override.css'
 
 type ChatBoxProps = {
   apiKey: string;
