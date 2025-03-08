@@ -1,7 +1,6 @@
 import json
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
 from stream_chat import StreamChat, StreamChatAsync
 import os
 from typing import Optional

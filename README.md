@@ -4,13 +4,25 @@
 
 # QuickChat
 
-client:
+A fun little project that uses [Stream](https://getstream.io/) to present a simple quick chat application.
+
+## Tech Stack
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
+[Stream](https://getstream.io/)
+
+## Deployment
+
+The entire app is dockerized. But for more control, both are deployed separately:
+
+- client: Deployed on Netlify
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fb2a0376-242e-4bab-a025-4424ee37d186/deploy-status)](https://app.netlify.com/sites/quickchat-xmok/deploys)
 
-server: Deployed on Coolify
-
-
-A fun little project that uses [Stream](https://getstream.io/) to present a simple quick chat application.
+- server: Deployed using Coolify on a VPS I use for misc. projects
 
 ## 🍯 Features
 
@@ -30,10 +42,6 @@ Since this is an exercise I purposefully tried to develop using minimum dependen
 
 For quick TTM, Supabase is a great option but given the "NoSQL"-ish architecture of Stream, I would opt for Firebase or Appwrite for both Auth and DB. Firebase Auth + Firebase Realtime DB would be enough to track channels, users, and related data.
 
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-Stream
-
 ## ⊖ Biggest Blockers:
 
 1. Couldn't figure out why the client kept on disconnecting after logging in. This caused the largest bottleneck throughout the exercise. The cause was `<ChatView.Channels>` not rendering properly which resulted in the client auto disconnecting. This was not evident as no errors were thrown. Troubleshooting had to be old-school. I traced the component lifecycles until I finally pinpointed when the disconnect fired.
@@ -41,3 +49,20 @@ Stream
 2. Python interpreter suddenly stopped being picked up by VSCode. This resulted installed modules not being identified errors. Manually changing the interpreter in VSCode did not work either for reasons unbeknownst. Eventually, had to hardcode a virtual environment so it would be picked up.
 
 3. I was able to add AI characters w/ personalities but streaming them from Python to the SDK ended up taking much longer. That was the 3rd and final blocker.
+
+## Final Notes:
+
+UI and Design could have been improved by copying over code snippets from demos available on the site but I did not opt for that in order to keep code as unique as possible.
+
+## ✨ AI
+
+AI was used in the following places:
+
+1. To generate personalities for AI characters themselves
+2. To re-check my Docker Compose file once I was done with it
+
+---
+
+© Written by [xmok](https://xmok.me)
+
+UNLICENSED
