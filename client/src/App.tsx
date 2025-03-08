@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import { StreamChat } from 'stream-chat'
 import { LoadingIndicator } from 'stream-chat-react'
 import 'stream-chat-react/dist/css/v2/index.css'
@@ -6,6 +6,12 @@ import Auth from './views/Auth'
 import ChatBox from './views/ChatBox'
 // import "./styles/index.css";
 import "./App.css";
+
+interface AuthContextType {
+  logout: () => void;
+}
+
+export const AuthContext = createContext<AuthContextType>({ logout: () => {} });
 
 const API_KEY = import.meta.env.VITE_STREAM_API_KEY
 if (!API_KEY) {
@@ -74,6 +80,14 @@ function App() {
     setClientReady(false)
   }
 
+  const AuthProvider = ({children}: {children: React.ReactNode}) => {
+    return (
+      <AuthContext.Provider value={{ logout: handleLogout }}>
+        {children}
+      </AuthContext.Provider>
+    )
+  }
+
   if (!user) {
     return <Auth onAuth={handleAuth} />
   }
@@ -83,26 +97,14 @@ function App() {
   }
 
   return (
-    <>
+    <AuthProvider>
       <ChatBox
         apiKey={API_KEY}
         user={{ id: user.id, name: user.id }}
         userToken={user.token}
+        onLogout={handleLogout}
       />
-      <button
-        onClick={handleLogout}
-        style={{
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-          padding: '8px 16px',
-          cursor: 'pointer',
-          zIndex: 1000
-        }}
-      >
-        Logout
-      </button>
-    </>
+    </AuthProvider>
   )
 }
 
