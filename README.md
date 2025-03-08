@@ -29,7 +29,7 @@ The entire app is dockerized. But for more control, both are deployed separately
 - Only a username is required to chat
     - **DRAWBACK**: anyone with the username can access the information but sufficient for an exercise
 - Chat w/ emojis, media
-- Chat with Anthropic AI Agent in lieu of characters
+- Chat with Anthropic AI Agent in lieu of characters (Due to limitation in the Python SDK [documented in Stream Docs], AI chat will only work in the "AI Channel" which one must manually search and join OR log in using test username `xmok`)
 - Characters are a WIP and will be implemented eventually
 
 ## ⚒️ Process
@@ -46,9 +46,9 @@ For quick TTM, Supabase is a great option but given the "NoSQL"-ish architecture
 
 1. Couldn't figure out why the client kept on disconnecting after logging in. This caused the largest bottleneck throughout the exercise. The cause was `<ChatView.Channels>` not rendering properly which resulted in the client auto disconnecting. This was not evident as no errors were thrown. Troubleshooting had to be old-school. I traced the component lifecycles until I finally pinpointed when the disconnect fired.
 
-2. Python interpreter suddenly stopped being picked up by VSCode. This resulted installed modules not being identified errors. Manually changing the interpreter in VSCode did not work either for reasons unbeknownst. Eventually, had to hardcode a virtual environment so it would be picked up.
+2. Python interpreter suddenly stopped being picked up by VSCode. This resulted in installed modules not being identified. Manually changing the interpreter in VSCode did not work either for reasons unbeknownst to me. Eventually, had to hardcode a virtual environment so the interpreter would be picked up.
 
-3. I was able to add AI characters w/ personalities but streaming them from Python to the SDK ended up taking much longer. That was the 3rd and final blocker.
+3. I was able to add AI characters w/ personalities but streaming them from Python to the SDK ended up taking much longer. That was the 3rd and final blocker. The work is enclosed in `add-ai-stream-curse` (Add AI getStream) branch. Unfortunately, could not fully complete the bonus task. The personalities _do_ talk to each other but text becomes empty in between. Most likely there is some error on the Python end which I can not immediately pin point due to being a bit rusty.
 
 ## Final Notes:
 
@@ -59,7 +59,7 @@ UI and Design could have been improved by copying over code snippets from demos 
 AI was used in the following places:
 
 1. To generate personalities for AI characters themselves
-2. To re-check my Docker Compose file once I was done with them
+2. To re-check my Docker Compose files once I was done with them
 
 ---
 
