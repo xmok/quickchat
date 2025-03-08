@@ -18,7 +18,7 @@ body,
     flex-shrink: 0;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
 
-    &--open {
+    &:is(--open) {
       width: 30%;
       position: fixed;
     }
@@ -34,7 +34,7 @@ body,
     min-width: 0;
     flex: 1;
 
-    &--thread-open {
+    &:is(--thread-open) {
       display: none;
     }
   }
@@ -86,7 +86,7 @@ body,
     .str-chat__main-panel {
       min-width: 0;
 
-      &--thread-open {
+      &:is(--thread-open) {
         max-width: 55%;
         display: flex;
       }
