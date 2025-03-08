@@ -29,7 +29,7 @@ const ChatBox = (props: ChatBoxProps) => {
     options: { state: true, presence: true, watch: true, limit: 10 }
   }
   return (
-    <Chat client={chatClient}>
+    <Chat client={chatClient} theme='str-chat__theme-dark'>
       <ChatView>
         <ChatView.Selector />
         <ChatView.Channels>
