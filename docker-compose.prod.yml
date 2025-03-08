@@ -18,7 +18,7 @@ services:
       context: ./server
       dockerfile: Dockerfile.prod
     ports:
-      - "8000:8000"  # Production port for the server
+      - "8001:8000"  # Map container port 8000 to host port 8001
     environment:
       - CHAT_APP_URL=${CLIENT_URL:-https://example.com}
       - STREAM_API_KEY=${STREAM_API_KEY}
