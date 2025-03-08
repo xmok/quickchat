@@ -22,8 +22,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[CHAT_APP_URL],
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
+    expose_headers=["Content-Length"]
 )
 
 if not STREAM_API_KEY or not STREAM_API_SECRET:

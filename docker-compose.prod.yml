@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    ports:
+      - "80:80"  # Production port for the client
+    environment:
+      - VITE_API_URL=${API_URL:-https://api.example.com}
+    depends_on:
+      - server
+    restart: always
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.prod
+    ports:
+      - "8000:8000"  # Production port for the server
+    environment:
+      - CHAT_APP_URL=${CLIENT_URL:-https://example.com}
+      - STREAM_API_KEY=${STREAM_API_KEY}
+      - STREAM_API_SECRET=${STREAM_API_SECRET}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    restart: always 
