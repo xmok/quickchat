@@ -8,7 +8,7 @@ from typing import Optional
 from dotenv import load_dotenv
 from models import UserAuth, StartAgentRequest, StopAgentRequest, NewMessageRequest
 from helpers import clean_channel_id, create_bot_id
-from agent import AnthropicAgent
+from anthropic_agent import AnthropicAgent
 
 load_dotenv()
 app = FastAPI()
@@ -180,3 +180,8 @@ async def get_ai_agents():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for Coolify"""
+    return {"status": "healthy"}

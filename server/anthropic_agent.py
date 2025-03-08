@@ -12,10 +12,10 @@ class AnthropicAgent:
     """Agent for using Anthropic API style agents"""
 
     def __init__(self, chat_client, channel):
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
-        if not api_key:
+        API_KEY = os.environ.get("ANTHROPIC_API_KEY")
+        if not API_KEY:
             raise ValueError("Anthropic API key is required")
-        self.anthropic = AsyncAnthropic(api_key=api_key)
+        self.anthropic = AsyncAnthropic(api_key=API_KEY)
         self.chat_client = chat_client
         self.channel = channel
 
