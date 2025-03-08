@@ -1,8 +1,10 @@
-import { Channel, ChannelHeader, ChannelList, Chat, ChatView, LoadingIndicator, MessageInput, MessageList, Thread, ThreadList, useCreateChatClient, Window } from 'stream-chat-react';
+import { AIStateIndicator, Channel, ChannelList, Chat, ChatView, MessageInput, MessageList, Thread, ThreadList, useCreateChatClient, Window } from 'stream-chat-react';
 import 'stream-chat-react/dist/css/v2/index.css';
 import '../styles/override.css'
 import { EmojiPicker } from 'stream-chat-react/emojis';
 import { AppMenu } from '../components/AppMenu/AppMenu';
+import Loader from '../components/Loader';
+import ChatBoxChannelHeader from '../components/ChatBoxChannelHeader/ChatBoxChannelHeader';
 
 type ChatBoxProps = {
   apiKey: string;
@@ -20,7 +22,7 @@ const ChatBox = (props: ChatBoxProps) => {
   });
   
   if (!chatClient) {
-    return <LoadingIndicator />
+    return <Loader />
   }
 
   const channelListOptions = {
@@ -37,8 +39,9 @@ const ChatBox = (props: ChatBoxProps) => {
           <ChannelList {...channelListOptions} additionalChannelSearchProps={{ AppMenu }} showChannelSearch />
           <Channel maxNumberOfFiles={10} multipleUploads={true} EmojiPicker={EmojiPicker} enrichURLForPreview>
             <Window>
-              <ChannelHeader />
+              <ChatBoxChannelHeader />
               <MessageList />
+              <AIStateIndicator />
               <MessageInput focus audioRecordingEnabled asyncMessagesMultiSendEnabled />
             </Window>
             <Thread />

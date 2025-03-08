@@ -1,3 +1,4 @@
+import json
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -82,7 +83,7 @@ async def start_ai_agent(request: StartAgentRequest, response: Response):
     It creates a bot user and adds it to the channel.
     It also creates an agent and adds it to the agents dictionary.
     """
-    server_client = StreamChatAsync(api_key, api_secret)
+    server_client = StreamChatAsync(api_key=STREAM_API_KEY, api_secret=STREAM_API_SECRET)
 
     # Clean up channel id to remove the channel type - if necessary
     channel_id_updated = clean_channel_id(request.channel_id)
@@ -132,7 +133,7 @@ async def stop_ai_agent(request: StopAgentRequest):
     This endpoint stops an AI agent for a given channel.
     It removes the agent from the agents dictionary and closes the server client.
     """
-    server_client = StreamChatAsync(api_key, api_secret)
+    server_client = StreamChatAsync(api_key=STREAM_API_KEY, api_secret=STREAM_API_SECRET)
 
     bot_id = create_bot_id(request.channel_id)
 

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { StreamChat } from 'stream-chat'
-import { LoadingIndicator } from 'stream-chat-react'
 import 'stream-chat-react/dist/css/v2/index.css'
 import Auth from './views/Auth'
 import ChatBox from './views/ChatBox'
 // import "./styles/index.css";
 import "./App.css";
 import { AuthContext } from './context/Auth'
+import Loader from './components/Loader'
 
 const API_KEY = import.meta.env.VITE_STREAM_API_KEY
 if (!API_KEY) {
@@ -89,7 +89,7 @@ function App() {
   }
 
   if (!clientReady) {
-    return <LoadingIndicator />
+      return <Loader />
   }
 
   return (

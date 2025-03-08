@@ -40,20 +40,21 @@ const Auth = ({ onAuth }: AuthProps) => {
   };
 
   return (
-    <div style={{ maxWidth: '300px', margin: '100px auto', padding: '20px' }}>
+    <div style={{ maxWidth: '300px', margin: '100px auto', padding: '20px', color: 'white' }}>
+      <img src="/icon.svg" alt="Logo" style={{ width: '100px', height: '100px', marginBottom: '20px' }} />
       <h2>{isLogin ? 'Login' : 'Register'}</h2>
       {error && (
         <div style={{ color: 'red', marginBottom: '10px', textAlign: 'center' }}>
           {error}
         </div>
       )}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
+          style={{ padding: '8px' }}
           required
         />
         {!isLogin && (
@@ -62,7 +63,7 @@ const Auth = ({ onAuth }: AuthProps) => {
             placeholder="Display Name (optional)"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
-            style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
+            style={{  padding: '8px' }}
           />
         )}
         <button 
