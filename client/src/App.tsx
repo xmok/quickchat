@@ -74,6 +74,7 @@ function App() {
   }
 
   const handleLogout = () => {
+    console.log("logging out")
     client.disconnectUser()
     localStorage.removeItem(STORAGE_USER_KEY)
     setUser(null)
