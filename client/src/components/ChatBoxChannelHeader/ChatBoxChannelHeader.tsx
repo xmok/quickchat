@@ -29,7 +29,7 @@ export default function ChatBoxChannelHeader() {
         });
       }, [channel]);
 
-  return (
+  return channel.id==="ai" ? (
     <div className='chatbox-channel-header'>
       <h2>{channel?.data?.name ?? 'Chat with an AI'}</h2>
 
@@ -37,7 +37,7 @@ export default function ChatBoxChannelHeader() {
         {aiInChannel ? 'Remove AI' : 'Add AI'}
       </button>
     </div>
-  );
+  ) : <div></div>;
 
   async function addOrRemoveAgent() {
     if (!channel) return;
