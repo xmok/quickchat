@@ -59,7 +59,7 @@ UI and Design could have been improved by copying over code snippets from demos 
 AI was used in the following places:
 
 1. To generate personalities for AI characters themselves
-2. To re-check my Docker Compose file once I was done with it
+2. To re-check my Docker Compose file once I was done with them
 
 ---
 
