@@ -6,6 +6,7 @@ import { AppMenu } from '../components/AppMenu/AppMenu';
 import { useCallback, useEffect, useState } from 'react';
 import { useMembers } from '../hooks/useMembers';
 import { aiService } from '../services/ai';
+import { AIControls } from '../components/AIControls/AIControls';
 
 type ChatBoxProps = {
   apiKey: string;
@@ -56,6 +57,8 @@ const ChatBox = (props: ChatBoxProps) => {
         }
       });
     }, [channel]);
+
+    if (channel.id) return <AIControls channelId={channel.id} />
 
   return (
     <div className='my-channel-header'>

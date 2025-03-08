@@ -6,9 +6,12 @@ import os
 import json
 from typing import Optional, List
 from dotenv import load_dotenv
-from models import UserAuth, StartAgentRequest, StopAgentRequest, NewMessageRequest
+from models import UserAuth, StartAgentRequest, StopAgentRequest, NewMessageRequest, AICharacter, StartAIConversationRequest
 from helpers import clean_channel_id, create_bot_id
 from agent import AnthropicAgent
+from personalities import PREDEFINED_CHARACTERS
+import asyncio
+import random
 
 load_dotenv()
 app = FastAPI()
@@ -133,22 +136,20 @@ async def start_ai_agent(request: StartAgentRequest, response: Response):
 
 @app.post("/stop-ai-agent")
 async def stop_ai_agent(request: StopAgentRequest):
-    """
-    This endpoint stops an AI agent for a given channel.
-    It removes the agent from the agents dictionary and closes the server client.
-    """
+    """Stop an AI agent and clean up resources"""
     server_client = StreamChatAsync(api_key=STREAM_API_KEY, api_secret=STREAM_API_SECRET)
-
-    bot_id = create_bot_id(request.channel_id)
-
-    if bot_id in agents:
-        await agents[bot_id].dispose()
-        del agents[bot_id]
-
-    channel = server_client.channel("messaging", request.channel_id)
-    await channel.remove_members([bot_id])
-    await server_client.close()
-    return {"message": "AI agent stopped"}
+    try:
+        bot_id = create_bot_id(request.channel_id)
+        
+        if bot_id in agents:
+            await agents[bot_id].dispose()
+            del agents[bot_id]
+        
+        channel = server_client.channel("messaging", request.channel_id)
+        await channel.remove_members([bot_id])
+        return {"message": "AI agent stopped"}
+    finally:
+        await server_client.close()
 
 
 @app.post("/new-message")
@@ -180,6 +181,87 @@ async def get_ai_agents():
     This endpoint returns a list of all the AI agents.
     """
     return {"agents": list(agents.keys())}
+
+@app.post("/start-ai-conversation")
+async def start_ai_conversation(request: StartAIConversationRequest):
+    """Start an autonomous conversation between AI characters"""
+    if len(request.character_ids) != 2:
+        raise HTTPException(status_code=400, detail="Exactly 2 characters are required")
+    
+    # Validate and get characters
+    characters = []
+    for char_id in request.character_ids:
+        character = PREDEFINED_CHARACTERS.get(char_id)
+        if not character:
+            raise HTTPException(status_code=400, detail=f"Character {char_id} not found")
+        characters.append(character)
+    
+    server_client = StreamChatAsync(api_key=STREAM_API_KEY, api_secret=STREAM_API_SECRET)
+    channel = server_client.channel(request.channel_type, request.channel_id)
+    
+    # Create and setup agents
+    bot_ids = []
+    created_agents = []
+    try:
+        for character in characters:
+            bot_id = create_bot_id(f"{request.channel_id}-{character.id}")
+            bot_ids.append(bot_id)
+            
+            # Upsert bot user
+            await server_client.upsert_user({
+                "id": bot_id,
+                "name": character.name,
+                "role": "admin",
+            })
+            
+            # Add to channel
+            try:
+                await channel.add_members([bot_id])
+            except Exception as error:
+                print(f"Failed to add {character.name} to channel: ", error)
+                raise HTTPException(status_code=405, detail="Failed to add AI to channel")
+        
+        # Create agents
+        agent1 = AnthropicAgent(server_client, channel, characters[0])
+        agent2 = AnthropicAgent(server_client, channel, characters[1])
+        created_agents.extend([agent1, agent2])
+        
+        # Store agents
+        agents[bot_ids[0]] = agent1
+        agents[bot_ids[1]] = agent2
+        
+        # Start the conversation
+        await agent1.start_autonomous_conversation(agent2, request.max_turns)
+        
+        return {
+            "message": "AI conversation started",
+            "characters": [c.name for c in characters],
+            "bot_ids": bot_ids
+        }
+    except Exception as e:
+        # Clean up on error
+        for agent in created_agents:
+            await agent.dispose()
+        for bot_id in bot_ids:
+            if bot_id in agents:
+                del agents[bot_id]
+        await server_client.close()
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/list-characters")
+async def list_characters():
+    """List all available AI characters"""
+    return {
+        "characters": [
+            {
+                "id": key,
+                "name": char.name,
+                "personality": char.personality,
+                "initial_prompt": char.initial_prompt
+            }
+            for key, char in PREDEFINED_CHARACTERS.items()
+        ]
+    }
 
 if __name__ == "__main__":
     import uvicorn
