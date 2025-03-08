@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react'
+import { useState, useEffect } from 'react'
 import { StreamChat } from 'stream-chat'
 import { LoadingIndicator } from 'stream-chat-react'
 import 'stream-chat-react/dist/css/v2/index.css'
@@ -6,12 +6,7 @@ import Auth from './views/Auth'
 import ChatBox from './views/ChatBox'
 // import "./styles/index.css";
 import "./App.css";
-
-interface AuthContextType {
-  logout: () => void;
-}
-
-export const AuthContext = createContext<AuthContextType>({ logout: () => {} });
+import { AuthContext } from './context/Auth'
 
 const API_KEY = import.meta.env.VITE_STREAM_API_KEY
 if (!API_KEY) {

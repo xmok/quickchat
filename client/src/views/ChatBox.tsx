@@ -1,4 +1,4 @@
-import { Avatar, Channel, ChannelHeader, ChannelList, Chat, ChatView, LoadingIndicator, MessageInput, MessageList, SendButton, Thread, ThreadList, useCreateChatClient, Window } from 'stream-chat-react';
+import { Channel, ChannelHeader, ChannelList, Chat, ChatView, LoadingIndicator, MessageInput, MessageList, Thread, ThreadList, useCreateChatClient, Window } from 'stream-chat-react';
 import 'stream-chat-react/dist/css/v2/index.css';
 import '../styles/override.css'
 import { EmojiPicker } from 'stream-chat-react/emojis';

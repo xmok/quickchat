@@ -1,8 +1,8 @@
 import React, { useCallback, useContext } from "react";
 import type { AppMenuProps } from "stream-chat-react";
-import { AuthContext } from "../../App";
 
 import "./AppMenu.css";
+import { AuthContext } from "../../context/Auth";
 
 export const AppMenu = ({ close }: AppMenuProps) => {
   const { logout } = useContext(AuthContext);
