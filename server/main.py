@@ -82,7 +82,7 @@ async def start_ai_agent(request: StartAgentRequest, response: Response):
     It creates a bot user and adds it to the channel.
     It also creates an agent and adds it to the agents dictionary.
     """
-    server_client = StreamChatAsync(api_key, api_secret)
+    server_client = StreamChatAsync(api_key=STREAM_API_KEY, api_secret=STREAM_API_SECRET)
 
     # Clean up channel id to remove the channel type - if necessary
     channel_id_updated = clean_channel_id(request.channel_id)
