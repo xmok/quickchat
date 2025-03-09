@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { StreamChat } from 'stream-chat'
 import 'stream-chat-react/dist/css/v2/index.css'
-import Auth from './views/Auth'
+import Auth from './views/Auth/Auth'
 import ChatBox from './views/ChatBox'
 // import "./styles/index.css";
 import "./App.css";

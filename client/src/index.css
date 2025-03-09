@@ -1,9 +1,24 @@
+@import "tailwindcss";
+/* @layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities); */
+
+@theme {
+  --color-orange: #fe9800;
+  --color-green: #6ad912;
+  --color-gray: #1b1b1b;
+  --color-gray-secondary: #2b2b2b;
+  --color-gray-subheader: #8E8E8E;
+  --color-alert: #7E101E
+}
+
 :root {
   --primary-color: #695BF8;
   --active-primary-color: #131308;
-  --primary-bg: rgb(23, 25, 28);
+  /* --primary-bg: rgb(23, 25, 28); */
 }
 #root {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
-  background: var(--primary-bg);
+  background: linear-gradient(180deg, #000 0%, #000 100%);
 }

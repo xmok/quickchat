@@ -1,0 +1,43 @@
+#bg {
+    background: var(--backgrounds-header-glow, radial-gradient(100% 100% at 50% 0%, #282828 0%, rgba(19, 19, 19, 0.00) 100%));
+}
+
+h1 { 
+    background: var(--backgrounds-header-text, linear-gradient(91deg, #464646 0%, #FFF 10.05%, #FFF 81.71%, #70FF00 100%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 0px 40px rgba(255, 255, 255, 0.35);
+    @apply z-10;
+}
+h1::selection {
+    -webkit-text-fill-color: initial;
+}
+
+
+label {
+    color: #8e8e8e;
+}
+input {
+    background-color: #303030;
+}
+button:not([type="button"]) {
+    border: 1px solid var(--primary-primary, #6AD912);
+    background: var(--buttons-fields-fill-primary, linear-gradient(261deg, #0A1700 0%, #122800 100%));
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+button[type="button"] {
+    background: var(--backgrounds-header-text, linear-gradient(91deg, #464646 0%, #FFF 10.05%, #FFF 81.71%, #70FF00 100%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+button span:nth-child(2) {
+    background: var(--backgrounds-header-text, linear-gradient(91deg, #464646 0%, #FFF 10.05%, #FFF 81.71%, #70FF00 100%));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+    button span:nth-child(2)::selection {
+    -webkit-text-fill-color: black;
+}
