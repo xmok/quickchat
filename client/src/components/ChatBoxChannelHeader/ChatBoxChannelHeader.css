@@ -1,17 +1,17 @@
 .chatbox-channel-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font: normal;
-    padding: 0rem 1rem;
-    border-bottom: 1px solid lightgray;
-  }
-  
-  .chatbox-channel-header button {
-    background: #005fff;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-  }
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font: normal;
+	padding: 0rem 1rem;
+	border-bottom: 1px solid lightgray;
+}
+
+.chatbox-channel-header button {
+	background: #005fff;
+	color: white;
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	border: none;
+	cursor: pointer;
+}

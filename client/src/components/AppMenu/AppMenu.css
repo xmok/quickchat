@@ -1,32 +1,32 @@
 .str-chat__channel-search-bar-button.str-chat__channel-search-bar-button--menu {
-    position: relative;
+	position: relative;
 
-    & path {
-      fill: var(--primary-color)
-    }
+	& path {
+		fill: var(--primary-color);
+	}
 }
 .app-menu__container {
-  position: absolute;
-  top: 50px;
-  left: 10px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 0 8px var(--str-chat__box-shadow-color);
+	position: absolute;
+	top: 50px;
+	left: 10px;
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 0 0 8px var(--str-chat__box-shadow-color);
 }
 
 .app-menu__item-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .app-menu__item {
-  list-style: none;
-  margin: 0;
-  padding: 0.5rem 1rem;
+	list-style: none;
+	margin: 0;
+	padding: 0.5rem 1rem;
 
-  &:hover {
-    background-color: lightgrey;
-    cursor: pointer;
-  }
+	&:hover {
+		background-color: lightgrey;
+		cursor: pointer;
+	}
 }

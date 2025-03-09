@@ -1,8 +1,8 @@
 <p align="center">
-    <img src="./client/public/icon.svg" width="200" height="200" />
+    <img src="./client/src/assets/quickchat.png" />
 </p>
 
-# QuickChat
+# Quickchat
 
 A fun little project that uses [Stream](https://getstream.io/) to present a simple quick chat application.
 
@@ -11,6 +11,8 @@ A fun little project that uses [Stream](https://getstream.io/) to present a simp
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 [Stream](https://getstream.io/)
 
@@ -60,6 +62,7 @@ AI was used in the following places:
 
 1. To generate personalities for AI characters themselves
 2. To re-check my Docker Compose files once I was done with them
+33 To generate a logo (DALL-E)
 
 ---
 
