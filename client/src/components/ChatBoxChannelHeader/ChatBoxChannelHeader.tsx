@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useChannelStateContext } from "stream-chat-react";
+import { ChannelHeader, useChannelStateContext } from "stream-chat-react";
 import "./ChatBoxChannelHeader.css";
 
 export default function ChatBoxChannelHeader() {
@@ -38,7 +38,7 @@ export default function ChatBoxChannelHeader() {
 			</button>
 		</div>
 	) : (
-		<div></div>
+		<ChannelHeader />
 	);
 
 	async function addOrRemoveAgent() {

@@ -115,15 +115,13 @@ async def start_ai_agent(request: StartAgentRequest, response: Response):
         )
         return response
 
-    # Create an agent
-    agent = AnthropicAgent(server_client, channel)
-
     if bot_id in agents:
         print("Disposing agent")
         await agents[bot_id].dispose()
     else:
-        agents[bot_id] = agent
+        agent = AnthropicAgent(server_client, channel)
 
+    agents[bot_id] = agent
     return {"message": "AI agent started"}
 
 

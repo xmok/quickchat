@@ -1,9 +1,24 @@
 .str-chat {
-	--str-chat__primary-color: var(--primary-color);
-	--str-chat__active-primary-color: var(--active-primary-color);
-	/* --str-chat__surface-color: #f5f5f5;
-    --str-chat__secondary-surface-color: #fafafa;
-    --str-chat__primary-surface-color: #e0f2f1;
-    --str-chat__primary-surface-color-low-emphasis: #edf7f7;
-    --str-chat__border-radius-circle: 6px; */
+    --str-chat__primary-color: #6ad912;
+    --str-chat__own-message-bubble-background-color: #0a0a0a;
+    --str-chat__message-list-background-color: var(--backgrounds-main, linear-gradient(180deg, #000 0%, #000 100%));
+    
+    .str-chat__thread-list-container {
+      max-width: 330px;
+    }
+    
+    .str-chat__channel-preview-end {
+      height: 56px;
+      border-radius: 8px;
+      padding: 8px;
+    }
+
+    .str-chat__channel-list {
+      max-width: 1024px;
+    }
+    @media screen and (min-width: 768px) {
+      .str-chat__channel-list {
+        padding: 20px; 
+      }
+    }
 }

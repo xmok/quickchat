@@ -43,7 +43,7 @@ const Auth = ({ onAuth }: AuthProps) => {
 
 	return (
 		<>
-			<div className="flex flex-col flex-1 items-center justify-center my-[4.5rem] md:my-14">
+			<div id="auth" className="flex flex-col flex-1 items-center justify-center my-[4.5rem] md:my-14">
 				<div id="bg" className="w-full h-[200px] absolute top-11"></div>
 				<section className="flex flex-col mx-5 gap-14 max-w-sm md:mx-auto">
 					<div className="flex flex-col gap-3">

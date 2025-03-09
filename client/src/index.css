@@ -1,14 +1,3 @@
-@import "tailwindcss";
-
-@theme {
-	--color-orange: #fe9800;
-	--color-green: #6ad912;
-	--color-gray: #1b1b1b;
-	--color-gray-secondary: #2b2b2b;
-	--color-gray-subheader: #8e8e8e;
-	--color-alert: #7e101e;
-}
-
 #root {
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans,
 		Ubuntu, Cantarell, Helvetica Neue, sans-serif;
