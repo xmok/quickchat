@@ -1,5 +1,6 @@
 .str-chat__channel-search-bar-button.str-chat__channel-search-bar-button--menu {
 	position: relative;
+	z-index: 10;
 
 	& path {
 		fill: var(--str-chat__primary-color);

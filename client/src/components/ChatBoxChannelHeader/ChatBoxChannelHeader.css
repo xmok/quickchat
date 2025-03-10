@@ -1,17 +1,16 @@
-.chatbox-channel-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	font: normal;
-	padding: 0rem 1rem;
-	border-bottom: 1px solid lightgray;
-}
+.str-chat__channel-header {
+	.ai-button {
+		background: linear-gradient(261deg, #0A1700 0%, #122800 100%);
+		box-shadow: 0 4px 4px #00000040 inset;
+		color: white;
+		border: 1px solid var(--color-green);
+		border-radius: .375rem;
+		padding: .5rem 1rem;
+		cursor: pointer;
 
-.chatbox-channel-header button {
-	background: #005fff;
-	color: white;
-	padding: 0.5rem 1rem;
-	border-radius: 0.5rem;
-	border: none;
-	cursor: pointer;
+		&:disabled {
+			opacity: 20%;
+			cursor: none;
+		}
+	}
 }

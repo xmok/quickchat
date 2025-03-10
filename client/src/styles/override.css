@@ -1,5 +1,5 @@
 .str-chat {
-    --str-chat__primary-color: #6ad912;
+    --str-chat__primary-color: var(--color-green);
     --str-chat__own-message-bubble-background-color: #0a0a0a;
     --str-chat__message-list-background-color: var(--backgrounds-main, linear-gradient(180deg, #000 0%, #000 100%));
     
@@ -13,9 +13,18 @@
       padding: 8px;
     }
 
+    .str-chat__channel-preview-messenger--last-message {
+      font-size: 14px;
+    }
+
     .str-chat__channel-list {
       max-width: 1024px;
     }
+
+    .str-chat__ai-state-indicator-container {
+      background: var(--str-chat__primary-color);
+    }
+
     @media screen and (min-width: 768px) {
       .str-chat__channel-list {
         padding: 20px; 
