@@ -7,7 +7,7 @@
 	}
 }
 .str-chat__header-hamburger path {
-  fill: var(--str-chat__primary-color);
+	fill: var(--str-chat__primary-color);
 }
 
 .app-menu__container {

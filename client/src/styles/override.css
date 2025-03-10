@@ -1,33 +1,36 @@
 .str-chat {
-    --str-chat__primary-color: var(--color-green);
-    --str-chat__own-message-bubble-background-color: #0a0a0a;
-    --str-chat__message-list-background-color: var(--backgrounds-main, linear-gradient(180deg, #000 0%, #000 100%));
-    
-    .str-chat__thread-list-container {
-      max-width: 330px;
-    }
-    
-    .str-chat__channel-preview-end {
-      height: 56px;
-      border-radius: 8px;
-      padding: 8px;
-    }
+	--str-chat__primary-color: var(--color-green);
+	--str-chat__own-message-bubble-background-color: #0a0a0a;
+	--str-chat__message-list-background-color: var(
+		--backgrounds-main,
+		linear-gradient(180deg, #000 0%, #000 100%)
+	);
 
-    .str-chat__channel-preview-messenger--last-message {
-      font-size: 14px;
-    }
+	.str-chat__thread-list-container {
+		max-width: 330px;
+	}
 
-    .str-chat__channel-list {
-      max-width: 1024px;
-    }
+	.str-chat__channel-preview-end {
+		height: 56px;
+		border-radius: 8px;
+		padding: 8px;
+	}
 
-    .str-chat__ai-state-indicator-container {
-      background: var(--str-chat__primary-color);
-    }
+	.str-chat__channel-preview-messenger--last-message {
+		font-size: 14px;
+	}
 
-    @media screen and (min-width: 768px) {
-      .str-chat__channel-list {
-        padding: 20px; 
-      }
-    }
+	.str-chat__channel-list {
+		max-width: 1024px;
+	}
+
+	.str-chat__ai-state-indicator-container {
+		background: var(--str-chat__primary-color);
+	}
+
+	@media screen and (min-width: 768px) {
+		.str-chat__channel-list {
+			padding: 20px;
+		}
+	}
 }

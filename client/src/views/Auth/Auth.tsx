@@ -20,7 +20,7 @@ const Auth = ({ onAuth }: AuthProps) => {
 		const endpoint = isLogin ? "/auth/login" : "/auth/register";
 
 		try {
-      setIsLoading(true);
+			setIsLoading(true);
 			const response = await axios.post(
 				`${import.meta.env.VITE_API_URL}${endpoint}`,
 				{
@@ -28,7 +28,7 @@ const Auth = ({ onAuth }: AuthProps) => {
 					...(isLogin ? {} : { name: displayName || username }),
 				},
 			);
-      onAuth(response.data.stream_token, response.data.user_id);
+			onAuth(response.data.stream_token, response.data.user_id);
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			const errorMessage =
@@ -37,13 +37,16 @@ const Auth = ({ onAuth }: AuthProps) => {
 				"Authentication failed";
 			setError(errorMessage);
 		} finally {
-      setIsLoading(false);
-    }
+			setIsLoading(false);
+		}
 	};
 
 	return (
 		<>
-			<div id="auth" className="flex flex-col flex-1 items-center justify-center my-[4.5rem] md:my-14">
+			<div
+				id="auth"
+				className="flex flex-col flex-1 items-center justify-center my-[4.5rem] md:my-14"
+			>
 				<div id="bg" className="w-full h-[200px] absolute top-11"></div>
 				<section className="flex flex-col mx-5 gap-14 max-w-sm md:mx-auto">
 					<div className="flex flex-col gap-3">

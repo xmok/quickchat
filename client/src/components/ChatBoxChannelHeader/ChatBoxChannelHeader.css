@@ -1,6 +1,6 @@
 .str-chat__channel-header {
 	.ai-button {
-		background: linear-gradient(261deg, #0A1700 0%, #122800 100%);
+		background: linear-gradient(261deg, #0a1700 0%, #122800 100%);
 		box-shadow: 0 4px 4px #00000040 inset;
 		color: white;
 		border: 1px solid var(--color-green);
