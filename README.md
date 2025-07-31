@@ -16,7 +16,7 @@ A fun little project that uses [Stream](https://getstream.io/) to present a simp
 
 [Stream](https://getstream.io/)
 
-## Deployment
+## 🚀 Deployment
 
 The entire app is dockerized. But for more control, both are deployed separately:
 
@@ -62,7 +62,7 @@ AI was used in the following places:
 
 1. To generate personalities for AI characters themselves
 2. To re-check my Docker Compose files once I was done with them
-33 To generate a logo (DALL-E)
+3. To generate a logo (DALL-E)
 
 ---
 
